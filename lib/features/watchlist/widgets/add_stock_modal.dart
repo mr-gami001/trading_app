@@ -29,10 +29,10 @@ class AddStockModal extends StatelessWidget {
           return const SizedBox.shrink();
         }
 
-        final Watchlist watchlist = watchlistState.watchlists.firstWhere(
-          (w) => w.id == watchlistId,
-          orElse: () => watchlistState.activeWatchlist ?? watchlistState.watchlists.first,
-        );
+        final int matchIdx = watchlistState.watchlists.indexWhere((w) => w.id == watchlistId);
+        final Watchlist watchlist = matchIdx != -1
+            ? watchlistState.watchlists[matchIdx]
+            : (watchlistState.activeWatchlist ?? watchlistState.watchlists.first);
 
         return Container(
           padding: const EdgeInsets.only(top: 16, bottom: 24, left: 16, right: 16),

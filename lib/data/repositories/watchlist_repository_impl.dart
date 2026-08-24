@@ -10,7 +10,14 @@ class WatchlistRepositoryImpl implements WatchlistRepository {
 
   @override
   Future<List<Watchlist>> getWatchlists() async {
-    return await localDataSource.getWatchlists();
+    final models = await localDataSource.getWatchlists();
+    return models
+        .map((m) => Watchlist(
+              id: m.id,
+              name: m.name,
+              symbols: List<String>.from(m.symbols),
+            ))
+        .toList();
   }
 
   @override
