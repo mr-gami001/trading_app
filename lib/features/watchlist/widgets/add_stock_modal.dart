@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../core/constants/stock_constants.dart';
 import '../../../core/utils/decimal_utils.dart';
+import '../../../domain/entities/watchlist.dart';
 import '../../market/bloc/market_bloc.dart';
 import '../../market/bloc/market_state.dart';
 import '../bloc/watchlist_bloc.dart';
@@ -24,9 +25,13 @@ class AddStockModal extends StatelessWidget {
 
     return BlocBuilder<WatchlistBloc, WatchlistState>(
       builder: (context, watchlistState) {
-        final watchlist = watchlistState.watchlists.firstWhere(
+        if (watchlistState.watchlists.isEmpty) {
+          return const SizedBox.shrink();
+        }
+
+        final Watchlist watchlist = watchlistState.watchlists.firstWhere(
           (w) => w.id == watchlistId,
-          orElse: () => watchlistState.activeWatchlist!,
+          orElse: () => watchlistState.activeWatchlist ?? watchlistState.watchlists.first,
         );
 
         return Container(
