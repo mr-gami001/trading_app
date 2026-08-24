@@ -10,11 +10,11 @@ import '../features/watchlist/bloc/watchlist_bloc.dart';
 import '../features/watchlist/pages/watchlist_page.dart';
 import '../injection_container.dart';
 import 'navigation/navigation_bloc.dart';
-import 'navigation/navigation_event.dart';
 import 'navigation/navigation_state.dart';
 import 'theme/app_theme.dart';
 import 'theme/theme_bloc.dart';
 import 'theme/theme_state.dart';
+import 'widgets/custom_bottom_nav_bar.dart';
 
 class TradingApp extends StatelessWidget {
   const TradingApp({super.key});
@@ -67,11 +67,6 @@ class MainNavigationShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardSurface = AppTheme.getCardSurface(context);
-    final borderColor = AppTheme.getBorderColor(context);
-    final activeColor = AppTheme.getGainColor(context);
-    final mutedColor = AppTheme.getTextMuted(context);
-
     return BlocBuilder<NavigationBloc, NavigationState>(
       builder: (context, navState) {
         return Scaffold(
@@ -79,44 +74,7 @@ class MainNavigationShell extends StatelessWidget {
             index: navState.currentIndex,
             children: _pages,
           ),
-          bottomNavigationBar: Container(
-            decoration: BoxDecoration(
-              color: cardSurface,
-              border: Border(top: BorderSide(color: borderColor, width: 0.5)),
-            ),
-            child: BottomNavigationBar(
-              currentIndex: navState.currentIndex,
-              onTap: (index) => context.read<NavigationBloc>().add(SelectTabEvent(index)),
-              backgroundColor: cardSurface,
-              selectedItemColor: activeColor,
-              unselectedItemColor: mutedColor,
-              type: BottomNavigationBarType.fixed,
-              selectedFontSize: 12,
-              unselectedFontSize: 12,
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.explore_outlined),
-                  activeIcon: Icon(Icons.explore),
-                  label: 'Explore',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.bookmark_outline),
-                  activeIcon: Icon(Icons.bookmark),
-                  label: 'Watchlist',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.pie_chart_outline),
-                  activeIcon: Icon(Icons.pie_chart),
-                  label: 'Holdings',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.receipt_long_outlined),
-                  activeIcon: Icon(Icons.receipt_long),
-                  label: 'Orders',
-                ),
-              ],
-            ),
-          ),
+          bottomNavigationBar: const CustomBottomNavBar(),
         );
       },
     );

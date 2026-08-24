@@ -381,7 +381,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       child: Icon(Icons.receipt_long, color: activeColor, size: 20),
                     ),
-                    title: const Text('Executed Orders & Logs', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                    title: Text('Executed Orders & Logs', style: TextStyle(color: isDark ? Colors.white : AppTheme.lightTextPrimary, fontWeight: FontWeight.bold, fontSize: 14)),
                     subtitle: Text('View complete history of executed orders', style: TextStyle(color: mutedText, fontSize: 12)),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
@@ -408,7 +408,7 @@ class ProfilePage extends StatelessWidget {
                             size: 20,
                           ),
                         ),
-                        title: const Text('App Theme', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                        title: Text('App Theme', style: TextStyle(color: isDark ? Colors.white : AppTheme.lightTextPrimary, fontWeight: FontWeight.bold, fontSize: 14)),
                         subtitle: Text(
                           themeState.isDarkMode ? 'Dark Mode (Groww Dark)' : 'Light Mode (Clean Slate)',
                           style: TextStyle(color: mutedText, fontSize: 12),
@@ -435,7 +435,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       child: const Icon(Icons.account_balance, color: Color(0xFF3B82F6), size: 20),
                     ),
-                    title: const Text('Primary Bank Account', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                    title: Text('Primary Bank Account', style: TextStyle(color: isDark ? Colors.white : AppTheme.lightTextPrimary, fontWeight: FontWeight.bold, fontSize: 14)),
                     subtitle: Text('HDFC Bank ••••••8921 (Primary)', style: TextStyle(color: mutedText, fontSize: 12)),
                     trailing: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
@@ -458,7 +458,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       child: const Icon(Icons.badge, color: Color(0xFF8B5CF6), size: 20),
                     ),
-                    title: const Text('Demat Account (CDSL)', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)),
+                    title: Text('Demat Account (CDSL)', style: TextStyle(color: isDark ? Colors.white : AppTheme.lightTextPrimary, fontWeight: FontWeight.bold, fontSize: 14)),
                     subtitle: Text('BO ID: 1208160000491023', style: TextStyle(color: mutedText, fontSize: 12)),
                   ),
                 ],
